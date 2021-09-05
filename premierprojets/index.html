@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 
@@ -72,28 +72,59 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- MODAL -->
+<div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
+  
+      <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title">FORMULAIRE DE PRÉ-INSCRIPTION</h4>
         </div>
+        
         <div class="modal-body">
-          ...
+          <p class="text-center">L'accès aux projections sera gratuit et ouvert à tous mais je souhaite que le public puisse se préinscrire pour estimer le nombre de personnes présentes chaque soir.</p>
+          <form action="" method="post" class="text-center">
+            <h6 class="m-3">VOTRE NOM ET PRENOM</h6>
+            <div class="form-row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="votre nom">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="votre prenom">
+                </div>
+              </div>
+            <h6 class="m-3">DATES DISPONIBLE</h6>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="5 Août">
+                <label class="form-check-label" for="inlineCheckbox1">5 Août</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="6 Août">
+                <label class="form-check-label" for="inlineCheckbox2">6 Août</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="7 Août">
+                <label class="form-check-label" for="inlineCheckbox3">7 Août</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="8 Août">
+                <label class="form-check-label" for="inlineCheckbox4">8 Août</label>
+              </div>
+              <h6 class="m-3">VOTRE EMAIL</h6>
+              <div class="form-row">
+                <div class="col">
+                  <input type="email" class="form-control" placeholder="votreemail@email.fr">
+                </div>
+              </div>
+              <input class="m-3 input-submit" type="submit" value="ENVOYER">
+          </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
         </div>
       </div>
+  
     </div>
   </div>
   

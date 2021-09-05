@@ -36,7 +36,7 @@
 <div class="bottom-container">
   <div class="row">
     <div class="col">
-      <a href="#" style="color:white" class="btn">Sign up</a>
+      <a href="#" style="color:white" class="btn">S'inscrire</a>
     </div>
     <div class="col">
       <a href="#" style="color:white" class="btn">mot de passe oublié?</a>
