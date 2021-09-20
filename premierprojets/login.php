@@ -2,6 +2,11 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -127,8 +132,18 @@ span.psw {
 </head>
 
 <body>
+<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Créez votre premier blog en PHP
+</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="index.html">Bloge</a></li>
+      </ul>
+    </div>
+  </nav>
+        
 
-  <h2>Modal Login Form</h2>
+  
 
   <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
@@ -161,6 +176,16 @@ span.psw {
   </div>
 
   <script>
+     document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.nav-wrapper');
+    var instances = M.Nav-wrapper.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.nav-wrapper').nav-wrapper();
+  });
   // Get the modal
   var modal = document.getElementById('id01');
 
@@ -172,61 +197,61 @@ span.psw {
   }
   </script>
      <?php 
-      // Vérification de la validité des informations
+// Vérification de la validité des informations
 
-      // Hachage du mot de passe
-      $pass_hache = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+// Hachage du mot de passe
+$pass_hache = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
-      // Insertion
-      $req = $bdd->prepare('INSERT INTO membres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
-      $req->execute(array(
-          'pseudo' => $pseudo,
-          'pass' => $pass_hache,
-          'email' => $email));
-          
+// Insertion
+$req = $bdd->prepare('INSERT INTO membres(pseudo, pass, email, date_inscription) VALUES(:pseudo, :pass, :email, CURDATE())');
+$req->execute(array(
+    'pseudo' => $pseudo,
+    'pass' => $pass_hache,
+    'email' => $email)); ?>
+    <?php 
 
-      //  Récupération de l'utilisateur et de son pass hashé
-      $req = $bdd->prepare('SELECT id, pass FROM membres WHERE pseudo = :pseudo');
-      $req->execute(array(
-          'pseudo' => $pseudo));
-      $resultat = $req->fetch();
+//  Récupération de l'utilisateur et de son pass hashé
+$req = $bdd->prepare('SELECT id, pass FROM membres WHERE pseudo = :pseudo');
+$req->execute(array(
+    'pseudo' => $pseudo));
+$resultat = $req->fetch();
 
-      // Comparaison du pass envoyé via le formulaire avec la base
-      $isPasswordCorrect = password_verify($_POST['pass'], $resultat['pass']);
+// Comparaison du pass envoyé via le formulaire avec la base
+$isPasswordCorrect = password_verify($_POST['pass'], $resultat['pass']);
 
-      if (!$resultat)
-      {
-          echo 'Mauvais identifiant ou mot de passe !';
-      }
-      else
-      {
-          if ($isPasswordCorrect) {
-              session_start();
-              $_SESSION['id'] = $resultat['id'];
-              $_SESSION['pseudo'] = $pseudo;
-              echo 'Vous êtes connecté !';
-          }
-          else {
-              echo 'Mauvais identifiant ou mot de passe !';
-          }
-      }
+if (!$resultat)
+{
+    echo 'Mauvais identifiant ou mot de passe !';
+}
+else
+{
+    if ($isPasswordCorrect) {
+        session_start();
+        $_SESSION['id'] = $resultat['id'];
+        $_SESSION['pseudo'] = $pseudo;
+        echo 'Vous êtes connecté !';
+    }
+    else {
+        echo 'Mauvais identifiant ou mot de passe !';
+    }
+} ?>
+<?php 
+if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
+{
+    echo 'Bonjour ' . $_SESSION['pseudo'];
+}
+?>
+<?php 
+session_start();
 
-      if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
-      {
-          echo 'Bonjour ' . $_SESSION['pseudo'];
-      }
+// Suppression des variables de session et de la session
+$_SESSION = array();
+session_destroy();
 
-      session_start();
-
-      // Suppression des variables de session et de la session
-      $_SESSION = array();
-      session_destroy();
-
-      // Suppression des cookies de connexion automatique
-      setcookie('login', '');
-      setcookie('pass_hache', '');
-
- ?>
+// Suppression des cookies de connexion automatique
+setcookie('login', '');
+setcookie('pass_hache', '');
+?>
   </body>
 </html>
 
